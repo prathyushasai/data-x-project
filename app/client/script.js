@@ -6,6 +6,7 @@ var labelsListId = '#labels-list';
 var initialVideoURL = 'https://www.youtube.com/watch?v=JphHw6iU4m8';
 var availableListLeftID = '#available-list-left'
 var availableListRightID = '#available-list-right'
+var colors = ['red', 'orange', 'green', 'blue', 'purple'];
 
 
 function setVideoTime(seconds) {
@@ -64,7 +65,6 @@ $(document).ready(function() {
     // Set up submit Handler
     urlForm.submit(function urlFormSubmit(event) {
         labelsList.html('<p>Loading, this may take some time depending on the video length.</p>')
-
         // Don't reload the page.
         event.preventDefault();
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
             .then(function responseHandler(response) {
                 var displayLabels;
                 if (response.data.hasOwnProperty('sortedLabels')) {
-                    displayLabels = response.data.sortedLabels.slice(0, 20); // {0 : "label"}
+                    displayLabels = response.data.sortedLabels; // {0 : "label"}
                 }
                 else {
                     alert("Response wasn't good");
@@ -95,7 +95,7 @@ $(document).ready(function() {
                 }
                 var listItems = [];
                 var label;
-                var info;
+                var info;;
                 for(var i in displayLabels) {
                     label = displayLabels[i];
                     info = response.data.labels[label];
@@ -107,9 +107,19 @@ $(document).ready(function() {
                     });
                     // Capitalize the first letter.
                     label = _.upperFirst(label);
-                    // Returns the list item.
-                    var labelLink = '<p>' + label;
-                    listItems.push('<li>' + labelLink + ': ' + timeLinks.join(', ') + '</p></li>');
+                    var toAdd = '';
+                    if (i % 5 == 0) {
+                        toAdd += '<div class="col-md-2 col-md-offset-1" style="height:350px;"><h5 style="background-color:' + colors[i % 5] + '; padding: 2px; margin: 0 auto; color: white">' + label + '</h5><div style="overflow-y: scroll; height: 80%; margin-top:5%;"><ul class="list-unstyled">';
+                    } else {
+                        toAdd += '<div class="col-md-2" style="height:350px;"><h5 style="background-color:' + colors[i % 5] + '; padding: 2px;  margin: 0 auto; color: white">' + label + '</h5><div style="overflow-y: scroll; height: 80%; margin-top:5%;"><ul class="list-unstyled">';
+                    }
+                    
+                    for (var j in timeLinks) {
+                        toAdd += '<li>' + timeLinks[j] + '</li>';
+                    }
+                    toAdd += '</ul></div></div>';
+
+                    listItems.push(toAdd);
                 }
 
                 // Insert the list items.
