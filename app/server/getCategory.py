@@ -1,3 +1,7 @@
+
+# load model first - it takes some time
+# download the Word2Vec Model from https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit and put it in the same folder as this file
+
 def loadModel():
     from gensim.models.keyedvectors import KeyedVectors
     model = gensim.models.KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True)  
