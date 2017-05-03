@@ -19,10 +19,10 @@ app._static_folder = '../client'
 
 # Setup classifier.
 # Creates classification network and node ID --> English string lookup.
-node_lookup = classifier.NodeLookup()
+# node_lookup = classifier.NodeLookup()
 videoFolder = './server/videos'
 cacheFolder = './server/cache'
-createdGraph = False
+# createdGraph = False
 
 if "cache" not in os.listdir('./server'):
     os.mkdir("./server/cache")
