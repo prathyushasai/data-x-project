@@ -28,3 +28,11 @@ def extract_result(response):
         result.append((datum["name"], datum["value"]))
     return result
 
+def classify(img):
+    if ".jpg" in img:
+        img = ClImage(file_obj=open(img, 'rb'))
+        response = model.predict([img])
+        print("classifying {0}".format(img))
+        return extract_result(response)
+    else:
+        raise RuntimeError('not an image: {0}'.format(img))

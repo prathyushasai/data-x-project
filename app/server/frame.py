@@ -8,9 +8,8 @@ from PIL import Image
 def get_youtube_id(url):
     return url.split("v=")[-1] if len(url.split("v=")) == 2 else url.rsplit('/', 1)[-1]
 
-#this function downloads a video by url
-#and uses openCV to return its image array
-def extract_files(url, max_frame=100, fps=5):
+# this file returns a list of frames and its occurence time in form (frame, time), path_to_frame_folder
+def extract_files(url, max_frame=10, fps=5):
     videoFolder = './server/videos'
     if "server" not in os.listdir("."):
         os.mkdir("server")
@@ -44,16 +43,19 @@ def extract_files(url, max_frame=100, fps=5):
     print("saving frames...")
     index = 0
     frameFolder = "./server/videos/frames/{0}".format(video_id)
-    os.mkdir(frameFolder)
+    if video_id not in os.listdir("./server/videos/frames/"):
+        os.mkdir(frameFolder)
     while i < dur:
         frame = vid.get_data(int(math.floor(i * fps)))
-        frames.append(frame)
         img = Image.fromarray(frame, 'RGB')
-        img.save(frameFolder + "/frame-" + str(index) + ".jpg")
+        img_destination = frameFolder + "/frame-" + str(index) + ".jpg"
+        img.save(img_destination)
+        frames.append((frame, i, img_destination))
         i += 5
         index += 1
         if index >= max_frame:
             break
     print("done saving frames.")
     vid.close()
-    return frames
+    return frames, frameFolder
+
