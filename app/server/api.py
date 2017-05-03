@@ -3,6 +3,7 @@ from clarifai.rest import Image as ClImage
 from clarifai.client import ClarifaiApi
 import os
 import json
+import argparse
 
 app = ClarifaiApp("fQejYok0nzGJpuUxGjXKQ62U3ElPSND3F2CRdqSa", "DA9oY3z-s3X8eUUsQQzkmw1aaMBWj-s11QZb-u2C")
 clarifai_api = ClarifaiApi("fQejYok0nzGJpuUxGjXKQ62U3ElPSND3F2CRdqSa", "DA9oY3z-s3X8eUUsQQzkmw1aaMBWj-s11QZb-u2C")
@@ -36,3 +37,18 @@ def classify(img):
         return extract_result(response)
     else:
         raise RuntimeError('not an image: {0}'.format(img))
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="classify an image")
+    parser.add_argument("--folder", action="store_true")
+    parser.add_argument("--image", action="store_true")
+    parser.add_argument("path", type=str)
+    args = parser.parse_args()
+
+    if args.folder:
+        print(classify_images(args.path))
+    else:
+        print(classify(args.path))
+
+
