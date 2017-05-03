@@ -73,12 +73,16 @@ footer {
 }
 
 .labels-container {
-  padding: 2%;
   height: 25%;
   width: 85%;
   margin: 0 auto;
   border: solid 2px black;
-  overflow-y:scroll
+  overflow-y:scroll;
+  display: inline-block;
+}
+#labels-list {
+  padding: 2%;
+  height: 80%;
 }
 
 #labels-list li {
@@ -87,8 +91,8 @@ footer {
   padding-bottom: 2.1%;
 }
 
-.labelLink {
-  font-weight: bold;
+#btn-more {
+  margin-top: 1%;
 }
 
 .timeLink {

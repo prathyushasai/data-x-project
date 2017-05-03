@@ -4,6 +4,9 @@ var urlFormInputId = '#url-form-input';
 var videoIFrameId = '#video-iframe';
 var labelsListId = '#labels-list';
 var initialVideoURL = 'https://www.youtube.com/watch?v=YbcxU1IK7s4';
+var startLabelIndex = 0;
+var endLabelIndex = 5;
+var colors = ['red', 'orange', 'green', 'blue', 'purple'];
 
 function setVideoTime(seconds) {
     var iframe = $(videoIFrameId);
@@ -40,7 +43,25 @@ $(document).ready(function() {
 
     // Set up submit Handler
     urlForm.submit(function urlFormSubmit(event) {
-        labelsList.html('<li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><p>Loading, this may take some time depending on the video length.</p>')
+        var label = 'test';
+        var timeLinks = [0, 1, 2, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2];
+        var listItems = [];
+        for(var i in colors) {
+            var toAdd = '';
+            if (i % 5 == 0) {
+                toAdd += '<div class="col-md-2 col-md-offset-1" style="height:200px;"><h4 style="background-color:' + colors[i] + '; padding: 2px; width: 80%; margin: 0 auto; color: white">' + label + i + '</h4><div style="overflow-y: scroll; height: 80%; margin-top:5%;"><ul class="list-unstyled">';
+            } else {
+                toAdd += '<div class="col-md-2" style="height:200px;"><h4 style="background-color:' + colors[i] + '; padding: 2px; width: 80%; margin: 0 auto; color: white">' + label + i + '</h4><div style="overflow-y: scroll; height: 80%; margin-top:5%;"><ul class="list-unstyled">';
+            }
+            
+            for (var j in timeLinks) {
+                toAdd += '<li>' + timeLinks[j] + '</li>';
+            }
+            toAdd += '</ul></div></div>';
+
+            listItems.push(toAdd);
+        }
+        labelsList.html(listItems);
 
         // Don't reload the page.
         event.preventDefault();
@@ -64,7 +85,7 @@ $(document).ready(function() {
             .then(function responseHandler(response) {
                 var displayLabels;
                 if (response.data.hasOwnProperty('sortedLabels')) {
-                    displayLabels = response.data.sortedLabels.slice(0, 10); // {0 : "label"}
+                    displayLabels = response.data.sortedLabels.slice(startLabelIndex, endLabelIndex); // {0 : "label"}
                 }
                 else {
                     alert("Response wasn't good");
@@ -84,9 +105,19 @@ $(document).ready(function() {
                     });
                     // Capitalize the first letter.
                     label = _.upperFirst(label);
-                    // Returns the list item.
-                    var labelLink = '<a class="labelLink" target="_blank" href="http://imagenet.stanford.edu/synset?wnid=' + info.labelId + '">' + label + '</a>';
-                    listItems.push('<li>' + labelLink + ': ' + timeLinks.join(', ') + '</li>');
+                    var toAdd = '';
+                    if (i % 5 == 0) {
+                        toAdd += '<div class="col-md-2 col-md-offset-1" style="height:200px;"><h4 style="background-color:' + colors[i] + '; padding: 2px; width: 80%; margin: 0 auto; color: white">' + label + '</h4><div style="overflow-y: scroll; height: 80%; margin-top:5%;"><ul class="list-unstyled">';
+                    } else {
+                        toAdd += '<div class="col-md-2" style="height:200px;"><h4 style="background-color:' + colors[i] + '; padding: 2px; width: 80%; margin: 0 auto; color: white">' + label + '</h4><div style="overflow-y: scroll; height: 80%; margin-top:5%;"><ul class="list-unstyled">';
+                    }
+                    
+                    for (var j in timeLinks) {
+                        toAdd += '<li>' + timeLinks[j] + '</li>';
+                    }
+                    toAdd += '</ul></div></div>';
+
+                    listItems.push(toAdd);
                 }
 
                 // Insert the list items.
