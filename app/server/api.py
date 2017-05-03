@@ -28,7 +28,3 @@ def extract_result(response):
         result.append((datum["name"], datum["value"]))
     return result
 
-def tag_video_file(path):
-    result = clarifai_api.tag_images(open(path))
-    print(result)
-
