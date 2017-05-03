@@ -9,7 +9,7 @@ def get_youtube_id(url):
     return url.split("v=")[-1] if len(url.split("v=")) == 2 else url.rsplit('/', 1)[-1]
 
 # this file returns a list of frames and its occurence time in form (frame, time), path_to_frame_folder
-def extract_files(url, max_frame=10, fps=5):
+def extract_files(url, max_frame=90, skip_time=6):
     videoFolder = './server/videos'
     if "server" not in os.listdir("."):
         os.mkdir("server")
@@ -31,7 +31,6 @@ def extract_files(url, max_frame=10, fps=5):
         print("done downloading video")
     except OSError:
         print("didn't need to download video")
-        pass
 
     frames = []
     fname = "%s/%s.mp4" % (videoFolder, str(video_id))
@@ -51,7 +50,7 @@ def extract_files(url, max_frame=10, fps=5):
         img_destination = frameFolder + "/frame-" + str(index) + ".jpg"
         img.save(img_destination)
         frames.append((frame, i, img_destination))
-        i += 5
+        i += skip_time
         index += 1
         if index >= max_frame:
             break
