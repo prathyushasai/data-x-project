@@ -57,9 +57,3 @@ def extract_files(url, max_frame=100, fps=5):
     print("done saving frames.")
     vid.close()
     return frames
-
-if __name__ == '__main__':
-    link = "https://www.youtube.com/watch?v=1-CV9kvST3I"
-    a = extract_files(link)
-    print("success")
-
