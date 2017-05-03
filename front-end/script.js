@@ -4,7 +4,6 @@ var urlFormInputId = '#url-form-input';
 var videoIFrameId = '#video-iframe';
 var labelsListId = '#labels-list';
 var initialVideoURL = 'https://www.youtube.com/watch?v=YbcxU1IK7s4';
-var availableListId = '#available-list'
 
 function setVideoTime(seconds) {
     var iframe = $(videoIFrameId);
@@ -36,23 +35,12 @@ $(document).ready(function() {
     var urlFormInput = $(urlFormInputId);
     var videoIFrame = $(videoIFrameId);
     var labelsList = $(labelsListId);
-    var availableList = $(availableListId)
 
-    // Ask for cached section stuff
-    axios.get('/cached')
-        .then(function (response) {
-            var thumbs = response.data.map(function(id) {
-               return '<div class="col-md-2"><a onclick="loadVideo(\'' + id + '\')"'
-                 + 'href="javascript:void(0)"> '
-                 + '<img src="http://img.youtube.com/vi/' + id + '/1.jpg" '
-                 + 'height="90" width="120"> </a> </div>';
-            }).join('');
-            availableList.html(thumbs)
-        });
+    $('.row.content').height($(window).height());
 
     // Set up submit Handler
     urlForm.submit(function urlFormSubmit(event) {
-        labelsList.html('<p>Loading, this may take some time depending on the video length.</p>')
+        labelsList.html('<li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><li>hi: hidhfidh</li><p>Loading, this may take some time depending on the video length.</p>')
 
         // Don't reload the page.
         event.preventDefault();

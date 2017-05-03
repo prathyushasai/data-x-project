@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.14.0/axios.min.js"></script>
+  <script src="script.js"></script>
 </head>
 <body>
 
@@ -30,14 +32,14 @@
   </div>
 </nav>
 
-<div class="container-fluid text-center">
+<div class="container-fluid ">
   <div class="row content">
 
     <div class="col-sm-2 sidenav">
     </div>
 
-    <div class="col-sm-8 text-center">
-      <h1>Welcome</h1>
+    <div class="col-sm-8 text-center middle-center">
+      <h3>Let's SPOT some labels!</h3>
       <p>This is a video classifier. Try it out by entering an Youtube URL below.</p>
 
       <div class="url-container">
@@ -52,12 +54,14 @@
       </div>
 
       <div class="video-container">
-        <iframe id="video-iframe" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        <iframe id="video-iframe" src="" frameborder="0" allowfullscreen></iframe>
       </div>
 
-      <div class="labels-container">
+      <h4>Video Labels</h4>
+
+      <div class="labels-container text-left">
         <ul id="labels-list">
-        hello
+          <li>Label: time</li>
           <!-- Labels will go here -->
         </ul>
       </div>
@@ -69,9 +73,8 @@
   </div>
 </div>
 
-<footer class="container-fluid text-center">
-  <p>Built by Mark Annevelink, Prathyusha Charagondla, Michael Tu, Nikita Vemuri, and Kate Xu</p>
-  <p>Data-X Spring 2017</p>
+<footer class="navbar-fixed-bottom container-fluid text-center">
+  <p>Built by Mark Annevelink, Prathyusha Charagondla, Michael Tu, Nikita Vemuri, and Kate Xu | Data-X Spring 2017</p>
 </footer>
 
 </body>

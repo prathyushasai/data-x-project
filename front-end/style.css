@@ -1,3 +1,6 @@
+body {
+  overflow-y:hidden;
+}
 .navbar {
   margin-bottom: 0;
   border-radius: 0;
@@ -15,7 +18,9 @@
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 500px}
+.row.content {
+  height: 500px;
+}
 
 /* Set gray background color and 100% height */
 .sidenav {
@@ -28,7 +33,7 @@
 footer {
   background-color: #555;
   color: white;
-  padding: 15px;
+  padding: 5px;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -40,9 +45,14 @@ footer {
   .row.content {height:auto;}
 }
 
+.middle-center {
+  height: 100%;
+}
+
 .url-container {
-  padding-top: 20px;
   margin: 0 auto;
+  margin-bottom: 20px;
+  width: 75%;
 }
 
 #url-form {
@@ -50,24 +60,31 @@ footer {
 }
 
 .video-container {
+  margin-top: 3%;
+  padding-bottom: 3%;
+  height: 40%;
+  width: 60%;;
+  margin: 0 auto;
+}
+
+#video-iframe {
+  width: 100%;
+  height: 100%;
 }
 
 .labels-container {
-  height: 50px;
+  padding: 2%;
+  height: 25%;
+  width: 85%;
+  margin: 0 auto;
+  border: solid 2px black;
+  overflow-y:scroll
 }
 
 #labels-list li {
   line-height: 1.5;
-  margin-bottom: 5px;
-}
-
-#available-list {
-    margin-top: 20px;
-}
-
-#available-list div {
-    text-align: center;
-    padding: 5px;
+  margin-bottom: 1%;
+  padding-bottom: 2.1%;
 }
 
 .labelLink {
