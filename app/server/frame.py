@@ -9,7 +9,7 @@ def get_youtube_id(url):
     return url.split("v=")[-1] if len(url.split("v=")) == 2 else url.rsplit('/', 1)[-1]
 
 # this file returns a list of frames and its occurence time in form (frame, time), path_to_frame_folder
-def extract_files(url, max_frame=90, skip_time=6):
+def extract_files(url, max_frame=90, skip_time=2):
     videoFolder = './server/videos'
     if "server" not in os.listdir("."):
         os.mkdir("server")
