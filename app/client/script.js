@@ -3,8 +3,9 @@ var urlFormId = '#url-form';
 var urlFormInputId = '#url-form-input';
 var videoIFrameId = '#video-iframe';
 var labelsListId = '#labels-list';
-var initialVideoURL = 'https://www.youtube.com/watch?v=YbcxU1IK7s4';
-var availableListId = '#available-list'
+var initialVideoURL = 'https://www.youtube.com/watch?v=JphHw6iU4m8';
+var availableListLeftID = '#available-list-left'
+var availableListRightID = '#available-list-right'
 
 
 function setVideoTime(seconds) {
@@ -37,18 +38,27 @@ $(document).ready(function() {
     var urlFormInput = $(urlFormInputId);
     var videoIFrame = $(videoIFrameId);
     var labelsList = $(labelsListId);
-    var availableList = $(availableListId)
+    var availableListIdLeft = $(availableListLeftID)
+    var availableListIdRight = $(availableListRightID)
 
     // Ask for cached section stuff
     axios.get('/cached')
         .then(function (response) {
-            var thumbs = response.data.map(function(id) {
-               return '<div class="col-md-2"><a onclick="loadVideo(\'' + id + '\')"'
+            data = response.data
+            var thumbs = data.slice(0, data.length / 2 + 1).map(function(id) {
+               return '<li style="padding-top:20px"><a onclick="loadVideo(\'' + id + '\')"'
                  + 'href="javascript:void(0)"> '
                  + '<img src="http://img.youtube.com/vi/' + id + '/1.jpg" '
-                 + 'height="90" width="120"> </a> </div>';
+                 + 'height="90" width="120"> </a></li>';
             }).join('');
-            availableList.html(thumbs)
+            availableListIdLeft.html('<div class="col-md-2">' + thumbs + '</div>')
+            var thumbs_right = data.slice(data.length / 2).map(function(id) {
+               return '<li style="padding-top:20px"><a onclick="loadVideo(\'' + id + '\')"'
+                 + 'href="javascript:void(0)"> '
+                 + '<img src="http://img.youtube.com/vi/' + id + '/1.jpg" '
+                 + 'height="90" width="120"> </a></li>';
+            }).join('');
+            availableListIdRight.html('<div class="col-md-2">' + thumbs_right + '</div>')
         });
 
     // Set up submit Handler
@@ -77,7 +87,7 @@ $(document).ready(function() {
             .then(function responseHandler(response) {
                 var displayLabels;
                 if (response.data.hasOwnProperty('sortedLabels')) {
-                    displayLabels = response.data.sortedLabels.slice(0, 10); // {0 : "label"}
+                    displayLabels = response.data.sortedLabels.slice(0, 20); // {0 : "label"}
                 }
                 else {
                     alert("Response wasn't good");
@@ -98,8 +108,8 @@ $(document).ready(function() {
                     // Capitalize the first letter.
                     label = _.upperFirst(label);
                     // Returns the list item.
-                    var labelLink = '<p>' + label + '</p>';
-                    listItems.push('<li>' + labelLink + ': ' + timeLinks.join(', ') + '</li>');
+                    var labelLink = '<p>' + label;
+                    listItems.push('<li>' + labelLink + ': ' + timeLinks.join(', ') + '</p></li>');
                 }
 
                 // Insert the list items.

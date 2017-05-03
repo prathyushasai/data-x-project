@@ -23,8 +23,8 @@
     </div>
     <div class="collapse navbar-collapse navbar-center" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">SPOT</a></li>
-        <li><a href="#">About</a></li>
+        <li class="active"><a href="#">SPOT | Data-X Spring 2017</a></li>
+      <!--   <li><a href="#"><p>Data-X Spring 2017</p></a></li> -->
       </ul>
     </div>
   </div>
@@ -33,22 +33,30 @@
 <div class="container-fluid text-center">
   <div class="row content">
 
-    <div class="col-sm-2 sidenav">
+    <div class="col-sm-2">
+      <div id="available-list-left" >
+      </div>
     </div>
 
     <div class="col-sm-8 text-center">
       <h1>Welcome</h1>
       <p>This is a video classifier. Try it out by entering an Youtube URL below.</p>
 
-      <div class="url-container">
-        <form id="url-form">
-          <div class="input-group">
-            <input id="url-form-input" type="text" class="form-control" placeholder="Enter Youtube URL">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="submit">Go!</button>
-            </span>
-          </div>
-        </form>
+      <div class="row">
+        <div class="col-sm-2 text-center"></div>
+        
+        <div class="col-sm-8 url-container">
+          <form id="url-form">
+            <div class="input-group">
+              <input id="url-form-input" type="text" class="form-control text-center">
+               <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+              </span>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-sm-2 text-center"></div>
       </div>
 
       <div class="video-container">
@@ -63,15 +71,21 @@
       </div>
     </div>
 
-    <div class="col-sm-2 sidenav">
+     <div class="col-sm-2">
+      <div id="available-list-right" >
+      </div>
     </div>
 
   </div>
+
+<!--   <div class="row">
+      <div id="available-list" >
+      </div>
+  </div> -->
 </div>
 
 <footer class="container-fluid text-center" style="fixed:">
   <p>Built by Mark Annevelink, Prathyusha Charagondla, Michael Tu, Nikita Vemuri, and Kate Xu</p>
-  <p>Data-X Spring 2017</p>
 </footer>
 
 </body>

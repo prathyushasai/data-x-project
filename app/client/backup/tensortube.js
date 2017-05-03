@@ -76,7 +76,7 @@ $(document).ready(function() {
             .then(function responseHandler(response) {
                 var displayLabels;
                 if (response.data.hasOwnProperty('sortedLabels')) {
-                    displayLabels = response.data.sortedLabels.slice(0, 10); // {0 : "label"}
+                    displayLabels = response.data.sortedLabels.slice(0, 20); // {0 : "label"}
                 }
                 else {
                     alert("Response wasn't good");
