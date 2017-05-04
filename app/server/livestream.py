@@ -27,14 +27,14 @@ def livestream_to_frames():
         ret, frame = cap.read()
         cv2.setMouseCallback(window_name, start_end)
         cv2.imshow(window_name, frame)
-        if count % framerate == 0:        
+        if count!= 0 and count % framerate == 0:        
             # Our operations on the frame come here
             name = "frame%d.jpg"%count
             cv2.imwrite(os.path.join(cwd+'/frames/', name), frame)
             if count % 20 == 0:
                 # response = classify(cwd+'/frames/' + name)
                 path = cwd+'/frames/' + name
-                os.system("python api.py --image {0}".format(path))
+                os.system("python ./server/api.py --image {0}".format(path))
             # Display the resulting frame
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

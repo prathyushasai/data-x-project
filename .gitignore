@@ -4,3 +4,4 @@ __pycache__
 logging.out
 app/server/videos/*
 app/server/test
+app/server/key.py

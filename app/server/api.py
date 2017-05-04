@@ -4,9 +4,10 @@ from clarifai.client import ClarifaiApi
 import os
 import json
 import argparse
+from key import *
 
-app = ClarifaiApp("fQejYok0nzGJpuUxGjXKQ62U3ElPSND3F2CRdqSa", "DA9oY3z-s3X8eUUsQQzkmw1aaMBWj-s11QZb-u2C")
-clarifai_api = ClarifaiApi("fQejYok0nzGJpuUxGjXKQ62U3ElPSND3F2CRdqSa", "DA9oY3z-s3X8eUUsQQzkmw1aaMBWj-s11QZb-u2C")
+app = ClarifaiApp(CLIENT_KEY, CLIENT_SECRET)
+clarifai_api = ClarifaiApi(CLIENT_KEY, CLIENT_SECRET)
 
 # get the general model
 model = app.models.get("general-v1.3")
