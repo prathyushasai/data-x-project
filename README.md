@@ -1,2 +1,2 @@
 # data-x-project
-Video Labeling
+Video Content Labeling for videos and livestream feeds for smarter search through videos.
